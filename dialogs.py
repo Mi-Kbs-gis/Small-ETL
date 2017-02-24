@@ -83,6 +83,7 @@ class SchemaTransformDialog(base):
 
         self.ui.radioButton_inTargetFile.setChecked(True) #Am Start soll Target Layer ausgewaehlt sein.
         self.saveToModus=1
+        self.geomTypeChangeAllowed=False
         self.projection_selection_widget.setEnabled(False)
 
         self.ui.radioButton_allFeatures.setChecked(True) #Am Start soll All Features ausgewaehlt sein.
@@ -109,6 +110,7 @@ class SchemaTransformDialog(base):
         try:
             if self.ui.radioButton_inTargetFile.isChecked():
                 self.saveToModus=1 # "inTargetFile"
+                self.geomTypeChangeAllowed=False
                 #set exportCRS to targetLayer.crs
                 self.projection_selection_widget.setCrs(self.main.targetLayer.crs())
                 self.exportCRS=self.main.targetLayer.crs()
@@ -117,12 +119,15 @@ class SchemaTransformDialog(base):
 
             elif self.ui.radioButton_newFile.isChecked():
                 self.saveToModus=2 # newFile
+                self.geomTypeChangeAllowed=True
                 self.projection_selection_widget.setEnabled(True)
             elif self.ui.radioButton_tempFile.isChecked():
                 self.saveToModus=3 # tempFile
+                self.geomTypeChangeAllowed=True
                 self.projection_selection_widget.setEnabled(True)
             elif self.ui.radioButton_relDbWithRelationships.isChecked():
                 self.saveToModus=4 # relDbWithRelationships
+                self.geomTypeChangeAllowed=False
                 #set exportCRS to targetLayer.crs
                 self.projection_selection_widget.setCrs(self.main.targetLayer.crs())
                 self.exportCRS=self.main.targetLayer.crs()
@@ -206,7 +211,7 @@ class SchemaTransformDialog(base):
             onlySelectedFeats=self.checkOnlySelectionCondition()
             # perfom the schema transformation
             self.schemaTrans.notifyProgress.connect(self.onProgress)
-            isValid=self.schemaTrans.setProcessParameter(layerTransformDef, onlySelectedFeats, useGeometrie, expGeom)
+            isValid=self.schemaTrans.setProcessParameter(layerTransformDef, onlySelectedFeats, useGeometrie, expGeom, self.geomTypeChangeAllowed)
             if isValid:
                 #try:
                 newFeatures=self.schemaTrans.starte()#(layerTransformDef, onlySelectedFeats, useGeometrie,expGeom)

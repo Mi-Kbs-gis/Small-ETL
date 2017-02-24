@@ -53,13 +53,14 @@ class SchemaTransformer(QThread):
         return transformCrs
 
     #This function is for initialization of the SchemaTransformer Parameters
-    def setProcessParameter(self, layerTransformDef, onlySelection, useGeometry, geometryExpression=None):
+    def setProcessParameter(self, layerTransformDef, onlySelection, useGeometry, geometryExpression=None,geomTypeChangeAllowed=False):
         isValid=True
         self.layerTransformDef=layerTransformDef
         self.onlySelection=onlySelection
         self.useGeometry=useGeometry
         self.geometryExpression=geometryExpression
-        self.wkbTypes=self.setGeomTypeNames
+        self.geomTypeChangeAllowed=geomTypeChangeAllowed
+        self.wkbTypes=self.setGeomTypeNames#non used
         if useGeometry: 
             # check up the geometry type of the Geometry-Rule result
             self.targetGeometryType, self.isGeomValid=self.getGeomRuleGeomType(geometryExpression)
@@ -242,7 +243,7 @@ class SchemaTransformer(QThread):
             elif newGeomExp==None:
                 self.logMeldung.emit(LogObject('Error on Result of Geometrie-Rule, no Geometry can created: '  + exp.expression() + ' :'+exp.evalErrorString(), 'Error'))
                 hasError=True
-            elif not newGeomExp.wkbType()==self.targetLayer.dataProvider().geometryType():
+            elif self.geomTypeChangeAllowed==False and not newGeomExp.wkbType()==self.targetLayer.dataProvider().geometryType():
                 print 'Rule: '+str(newGeomExp.type())+' TargetLayer: '+ str(self.targetLayer.dataProvider().geometryType())
                 #Type 0=WKBUnknown, Type 1=Point, 2=Linestring, 3=Polygon,  100=WKBNoGeometry                + str(self.wkbTypes[self.targetLayer.geometryType()]) + ' TargetLayer: ' + str(self.wkbTypes[newGeomExp.wkbType()])
                 self.logMeldung.emit(LogObject('Error on Result of Geometrie-Rule, different Geometry Types!   Geometry Rule: ' + str(self.helper.getGeomTypeName(newGeomExp.wkbType())) + ' TargetLayer: ' + str(self.helper.getGeomTypeName(self.targetLayer.dataProvider().geometryType())) , 'Error'))#+") "+str(newGeomExp.exportToWkt()) + ' on Source Feature('+str(srcFeature.id())
