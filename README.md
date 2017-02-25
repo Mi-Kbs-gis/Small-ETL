@@ -6,3 +6,5 @@ This is a plugin to importing the datasets of a datasource to another Datasource
 
 Any vectorlayer or non-spatial table can perform to any schema of vectorlayers or non-spatial layers. 
 You can define a special Expression rule for each field and you can also define a Expression rule for takeover the geometry.
+
+Tutorial under http://youtu.be/yISFnyYCbqs
