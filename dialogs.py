@@ -28,14 +28,18 @@ import os
 import sys
 import random
 
+
 from SchemaTransformer import SchemaTransformer
 from SchemaTransformerDefinitionWriter import SchemaTransformerDefinitionWriter
 from SchemaTransformerDefinitionReader import SchemaTransformerDefinitionReader
 from UniversalVectorLayerExport import UniversalVectorLayerExport
 from LogObject import LogObject
 
+#sys.path.append(os.path.dirname(__file__))
+#form, base = uic.loadUiType(os.path.join(os.path.dirname(__file__), 'SchemaTransformer.ui"'), resource_suffix='')
+
 pluginPath = os.path.dirname(os.path.abspath(__file__))
-form, base = loadUiType(pluginPath + "\SchemaTransformer.ui")#"\ui_plugindialog.ui")
+form, base = loadUiType(pluginPath + "\SchemaTransformer.ui")
 
 class SchemaTransformDialog(base):
     reload(sys)
@@ -306,6 +310,8 @@ class SchemaTransformDialog(base):
 
                 print 'Extension: ' + formatExt
                 #fileName+dlg.selectedNameFilter()
+                fInfo=QFileInfo(fileName)
+
                 self.absNewFileName = fileName #QFileDialog.getSaveFileName(self, "Save To New File", "Export_" , "All files (*)") #".shp")
                 
                 #Check if the File Extension is valid
@@ -322,13 +328,16 @@ class SchemaTransformDialog(base):
                 self.newFileExtension=fileExt #.decode("utf-8")
                 
                 #print "File-Extension= " + fileExt+ ' rfind(".")='+str(fileExt.find("."))+'    fileExt.find("/"):'+str(fileExt.find("/"))
+                fileInfo=QFileInfo(self.absNewFileName)
                 if fileExt.find("/")>-1:
                     self.absNewFileName=''
                     self.newFileExtension=''
                     print 'File Name not valid!'
                     self.ui.pushButton_saveToNewFile.setText("...")
+                elif fInfo.exists():
+                    QMessageBox.warning(self,'File already exists!','Choose another file name.')
+                    self.absNewFileName=''
                 else:
-                    fileInfo=QFileInfo(self.absNewFileName)
                     self.ui.pushButton_saveToNewFile.setText(fileInfo.fileName())
                     
                 print 'File: '+self.absNewFileName

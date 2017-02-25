@@ -8,12 +8,13 @@ description=This is a plugin to importing the datasets of a datasource to anothe
 about=Any vectorlayer or non-spatial table can perform to any schema of vectorlayers or non-spatial layers. You can define a special Expression rule for each field and you can also define a Expression rule for takeover the geometry.
 icon=icon.png
 
-;homepage=
-;repository=
+homepage=http://github.com/Mi-Kbs-gis/Small-ETL
+repository=http://github.com/Mi-Kbs-gis/Small-ETL
+tracker=https://github.com/Mi-Kbs-gis/Small-ETL/issues
 
 ;category=Vector,Database
 
-version=version 1.0
+version=version 1.1
 ; end of mandatory metadata
 
 ; experimental flag

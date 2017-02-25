@@ -2,7 +2,7 @@
 """
 /***************************************************************************
     Small-ETL
-	A QGIS plugin to perform schema transformations of QGIS vectorlayers
+    A QGIS plugin to perform schema transformations of QGIS vectorlayers
                              -------------------
     begin            : 2017-02-01
     author           : Michael Kürbs(LEG Thüringen)
@@ -23,12 +23,12 @@ from PyQt4.QtGui import *
 from qgis.core import *
 from qgis.gui import *
 
-# initialize Qt resources from file resouces.py
+# initialize Qt resources from file resources.py
 import resources
 
 
 from dialogs import SchemaTransformDialog
-#from griddrawer import GridDrawer
+
 
 
 class SchemaPlugin:
@@ -42,7 +42,6 @@ class SchemaPlugin:
     # save reference to the QGIS interface
     self.iface = iface
     self.canvas = iface.mapCanvas()                 # Flaeche, auf der die Geometrien gezeichnet werden
-    #self.gridDrawer = GridDrawer(self.canvas)
     self.mapTool = QgsMapToolEmitPoint(self.canvas) # Mit diesem Maptool kann man die Koordinaten abfangen, wenn jemand auf den MapCanvas klickt
 
   def initGui(self):
@@ -54,9 +53,10 @@ class SchemaPlugin:
     QObject.connect(self.action, SIGNAL("triggered()"), self.run)
 
     # Fuegt Menueeintrag im Hauptmenue hinzu
-    # self.mmqgis_menu = QMenu(QCoreApplication.translate("probenahme", "Probenahme"))
+    # self.mmqgis_menu = QMenu(QCoreApplication.translate("Small-ETL", "Small-ETL"))
     # self.iface.mainWindow().menuBar().insertMenu(self.iface.firstRightStandardMenu().menuAction(), self.mmqgis_menu)
     # self.mmqgis_menu.addAction(self.action)
+    # self.iface.addToolBarIcon(self.action)
 
     # add toolbar button and menu item
     self.iface.addVectorToolBarIcon(self.action)

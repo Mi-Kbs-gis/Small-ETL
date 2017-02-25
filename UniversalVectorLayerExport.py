@@ -214,3 +214,32 @@ class UniversalVectorLayerExport(QObject):
 
         writer = QgsVectorFileWriter(self.newFileAbsolutePath, self.refEncoding, self.refFields, self.geomType, self.exportCRS, longName, optParam)
         return writer
+        
+        # From PostGIS layer to SpatiaLite:
+
+        # from ogr2ogr import *
+        # main( [ "",
+                # "-f",
+                # "SQLite",
+                # "-lco",
+                # "GEOMETRY_NAME=geom",
+                # "-update",
+                # existingDBPath, # Path to existing .sqlite file
+                # "PG:{}".format( dataSourceURI.connectionInfo() ), # Connection string
+                # "{}.{}".format( dataSourceURI.schema(), dataSourceURI.table() ) # Tablename
+              # ]
+           # )
+
+        # From a Shapefile QGIS layer to SpatiaLite:
+
+        # from ogr2ogr import *
+        # main( [ "",
+                # "-f",
+                # "SQLite",
+                # "-lco",
+                # "GEOMETRY_NAME=geom",
+                # "-update",
+                # existingDBPath, # Path to existing .sqlite file
+                # layer.source()
+              # ]
+           # )

@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="/plugins/RCN_GitterTool" >
+  <qresource prefix="/plugins/Small-ETL" >
      <file>icon.png</file>
   </qresource>
 </RCC>
