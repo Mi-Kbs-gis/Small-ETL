@@ -11,4 +11,12 @@ Tutorial http://youtu.be/yISFnyYCbqs
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/yISFnyYCbqs" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 
 INSPIRE Tutorial https://youtu.be/sHqyIqsxYGo
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/sHqyIqsxYGo" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body class="logged-out env-production page-blob">
+		<iframe width="1280" height="720" src="https://www.youtube.com/embed/sHqyIqsxYGo" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+	</body>
+</html>
