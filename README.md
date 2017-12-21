@@ -8,5 +8,7 @@ Any vectorlayer or non-spatial table can perform to any schema of vectorlayers o
 You can define a special Expression rule for each field and you can also define a Expression rule for takeover the geometry.
 
 Tutorial http://youtu.be/yISFnyYCbqs
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/yISFnyYCbqs" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 
 INSPIRE Tutorial https://youtu.be/sHqyIqsxYGo
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/sHqyIqsxYGo" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
