@@ -1,8 +1,8 @@
 [general]
 name=Small-ETL
-email=Michael.Kuerbs@leg-thueringen.de
-author=Michael Kürbs (LEG-Thüringen)
-qgisMinimumVersion=2.16
+email=Michael.Kuerbs@tlug.thueringen.de
+author=Michael Kürbs (TLUG Thüringen)
+qgisMinimumVersion=2.18
 description=This is a plugin to importing the datasets of a datasource to another Datasource as you like, including Schema-Transformation and Geometry-Transformation. 
 
 about=Any vectorlayer or non-spatial table can perform to any schema of vectorlayers or non-spatial layers. You can define a special Expression rule for each field and you can also define a Expression rule for takeover the geometry.
@@ -10,11 +10,11 @@ icon=icon.png
 
 homepage=http://github.com/Mi-Kbs-gis/Small-ETL
 repository=http://github.com/Mi-Kbs-gis/Small-ETL
-tracker=https://github.com/Mi-Kbs-gis/Small-ETL/issues
+tracker=http://github.com/Mi-Kbs-gis/Small-ETL
 
 ;category=Vector,Database
 
-version=version 1.1
+version=version 1.2
 ; end of mandatory metadata
 
 ; experimental flag
@@ -27,4 +27,4 @@ deprecated=False
 qgisMaximumVersion=2.99
 
 # Tags are comma separated with spaces allowed
-tags=ETL, schema, transformation, integration, schematransformation, database, db, data, loader, geometry, import, append, layers, vector, table, non-spatial
+tags=ETL, schema, transformation, integration, schematransformation, INSPIRE, database, db, data, loader, geometry, import, append, layers, vector, table, non-spatial

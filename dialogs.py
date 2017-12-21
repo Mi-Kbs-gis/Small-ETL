@@ -5,8 +5,8 @@
     A QGIS plugin to perform schema transformations of QGIS vectorlayers
                              -------------------
     begin            : 2017-02-01
-    author           : Michael Kürbs(LEG Thüringen)
-    email            : michael.kuerbs@leg-thueringen.de
+    author           : Michael Kürbs(TLUG Thüringen)
+    email            : michael.kuerbs@tlug.thueringen.de
  ***************************************************************************/
 
 /***************************************************************************
@@ -175,7 +175,8 @@ class SchemaTransformDialog(base):
             if layer.type() != QgsMapLayer.RasterLayer:
                 #print name + ' Index: '+ str(iLayer)
                 layers.append(layer)
-                layerList.append( unicode( layer.name() ) )
+                #Layername in Combobox
+                layerList.append( unicode( layer.name()+" ("+str(layer.crs().authid()))+")")
                 iLayer=iLayer+1
         self.main.layers=layers
         self.main.layerList=layerList
@@ -217,23 +218,14 @@ class SchemaTransformDialog(base):
             self.schemaTrans.notifyProgress.connect(self.onProgress)
             isValid=self.schemaTrans.setProcessParameter(layerTransformDef, onlySelectedFeats, useGeometrie, expGeom, self.geomTypeChangeAllowed)
             if isValid:
-                #try:
-                newFeatures=self.schemaTrans.starte()#(layerTransformDef, onlySelectedFeats, useGeometrie,expGeom)
 
+                newFeatures=self.schemaTrans.starte()#
 
-                    # self.schemaTrans.exit()
-                    # self.schemaTrans.quit()
-                #except Exception, e:
-                #    raise 'Fehler' #repr(e)
-                    
-                #take over the new features to the target datasource
-                #targetDataProvider.addFeatures(newFeatures)
                 self.processVectorExport(self.main.targetLayer, newFeatures, self.exportCRS, self.schemaTrans.targetGeometryType)
 
     def processVectorExport(self, referenceLayer, newFeatures, exportCRS, geomType):
         print 'geomType: '+str(geomType)#+'='+str(self.schemaTrans.wkbTypes[geomType])
-        #geomType="Point"
-        #modus=-1
+
         hasError=False
         
         
@@ -248,7 +240,7 @@ class SchemaTransformDialog(base):
                 hasError=True
         elif self.saveToModus==3: # tempFile
             pass
-        elif self.saveToModus==4: # relDbWithRelationships
+        elif self.saveToModus==4: # relDbWithRelationships -- not implemented yet
             pass
         else:
             self.schreibeLog(LogObject("Output Option is not set",'Error'))
@@ -277,6 +269,8 @@ class SchemaTransformDialog(base):
         #nameFilterList.append(['XLS','xls']) #OGR-Fehler: GDALDriver::Create() no create method implemented for this format.
         nameFilterList.append(['XLSX','xlsx'])# it works!!!
         nameFilterList.append(['ODS', 'ods'])
+        nameFilterList.append(['CSV', 'csv'])
+        nameFilterList.append(['DBF', 'dbf'])
 
         
         filters=self.createFileFilteList(nameFilterList)
@@ -288,7 +282,6 @@ class SchemaTransformDialog(base):
         #dlg.setNameFilters(nameFilterList)
         dlg.setNameFilters(filters)# [self.tr('ESRI Shapefile (*.shp)'),self.tr('SQLite (*.sqlite)'),self.tr('GeoJSON (*.json)')] )#,self.tr('Geopackage (*.gpkg)'), self.tr('All Files (*)')] )
         #dlg.setDefaultSuffix( 'shp' )
-        #fileName = dlg.getSaveFileName(self, "Save To New File", "Export_" , "ESRI Shapefile (*.shp) ;; Geopackage (*.gpkg) ;; GeoJSON (*.json)")
         if dlg.exec_() :
             fileName = dlg.selectedFiles()[0]
             if len(fileName)>1:

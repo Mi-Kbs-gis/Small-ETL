@@ -5,8 +5,8 @@
     A QGIS plugin to perform schema transformations of QGIS vectorlayers
                              -------------------
     begin            : 2017-02-01
-    author           : Michael Kürbs(LEG Thüringen)
-    email            : michael.kuerbs@leg-thueringen.de
+    author           : Michael Kürbs(TLUG Thüringen)
+    email            : michael.kuerbs@tlug.thueringen.de
  ***************************************************************************/
 
 /***************************************************************************
@@ -252,7 +252,6 @@ class SchemaTransformer(QThread):
 
             else:
                 #self.logMeldung.emit(LogObject('Geom 1. Punkt: ' + str(newGeomExp.vertexAt(0).toString())+ ' Type: ' + str(newGeomExp.type()), 'Message'))
-                #print 'Geom 1. Punkt: ' + str(newGeomExp.vertexAt(0).toString())+ ' Type: ' + str(newGeomExp.type())
                 tarGeom=newGeomExp
         #Falls das Quellfeature eine Geometrie hat, wird diese uebernommen
         elif srcFeature.geometry(): #ab QGIS 2.18 srcFeature.hasGeometry():

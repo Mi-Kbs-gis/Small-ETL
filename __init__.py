@@ -5,8 +5,8 @@
 	A QGIS plugin to perform schema transformations and data integration of QGIS vectorlayers
                              -------------------
     begin            : 2017-02-01
-    author           : Michael Kürbs(LEG Thüringen)
-    email            : michael.kuerbs@leg-thueringen.de
+    author           : Michael Kürbs(TLUG Thüringen)
+    email            : michael.kuerbs@tlug.thueringen.de
  ***************************************************************************/
 
 /***************************************************************************
@@ -25,13 +25,13 @@ def description():
     return "A QGIS plugin to perform schema transformations and data integration of QGIS vectorlayers"
     
 def version():
-    return "Version 1.0"
+    return "Version 1.1"
     
 def qgisMinimumVersion():
     return "1.0"
     
 def authorName():
-    return "Michael Kürbs (LEG-Thüringen)"
+    return "Michael Kürbs (TLUG Thüringen)"
     
 def classFactory(iFace):
     from plugin import SchemaPlugin

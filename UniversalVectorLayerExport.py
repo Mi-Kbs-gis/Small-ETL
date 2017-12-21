@@ -5,8 +5,8 @@
     A QGIS plugin to perform schema transformations of QGIS vectorlayers
                              -------------------
     begin            : 2017-02-01
-    author           : Michael Kürbs(LEG Thüringen)
-    email            : michael.kuerbs@leg-thueringen.de
+    author           : Michael Kürbs(TLUG Thüringen)
+    email            : michael.kuerbs@tlug.thueringen.de
  ***************************************************************************/
 
 /***************************************************************************
